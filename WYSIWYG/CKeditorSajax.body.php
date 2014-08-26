@@ -163,7 +163,7 @@ function wfSajaxSearchImageCKeditor( $term ) {
 function wfSajaxSearchArticleCKeditor( $term ) {
 	global $wgContLang, $wgExtraNamespaces;
 	$limit = 30;
-	$ns = array(NS_MAIN, NS_CATEGORY, NS_IMAGE, NS_TEMPLATE, NS_USER);
+	$ns = array(NS_MAIN, NS_CATEGORY, NS_TEMPLATE, NS_USER); // NS_IMAGE removed
     if (defined('SF_NS_FORM')) $ns[]= SF_NS_FORM;
     if (defined('SMW_NS_PROPERTY')) $ns[]= SMW_NS_PROPERTY;
 
