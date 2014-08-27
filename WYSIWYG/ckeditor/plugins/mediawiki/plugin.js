@@ -305,6 +305,16 @@ CKEDITOR.plugins.add( 'mediawiki',
                 editor.insertElement( newFakeObj );
             }
         };
+        // 27.08.14 Varlin
+        var simplelinkCommand =
+    	{
+            exec : function( editor ) {
+				var link = editor.getSelection().getNative();
+                var style = new CKEDITOR.style( {element : 'a', attributes : {href : link}} );
+                    style.type = CKEDITOR.STYLE_INLINE;		// need to override... dunno why.
+                    style.apply( editor.document );
+            }
+        };
 
         // language logic for additional messages
         var MWpluginLang = []
@@ -338,6 +348,7 @@ CKEDITOR.plugins.add( 'mediawiki',
             specialTagDef   : 'Define any special tag, magic word or parser function:',
             // link
             linkTitle       : 'Mediawiki Link',
+            simplelink	    : 'Simple link',
             noPageFound     : 'no article found',
             onePageFound    : 'one article found',
             manyPageFound   : ' articles found',
@@ -450,6 +461,7 @@ CKEDITOR.plugins.add( 'mediawiki',
             specialTagDef   : 'Define any special tag, magic word or parser function:',
             // link
             linkTitle       : 'Créer/éditer un lien',
+            simplelink	    : 'Lien rapide',
             noPageFound     : 'pas d’article trouvé',
             onePageFound    : 'un article trouvé',
             manyPageFound   : ' articles trouvés',
@@ -604,6 +616,12 @@ CKEDITOR.plugins.add( 'mediawiki',
 					label : editor.lang.mwplugin.categorybtn,
 					command : 'MWCategory',
                     icon: this.path + 'images/icon_category.gif'
+				});
+			editor.ui.addButton( 'MWSimpleLink', // 27.08.14 Varlin
+				{
+					label : editor.lang.mwplugin.simplelink,
+					command : 'MWSimpleLink',
+                    icon: this.path + 'images/tb_icon_simplelink.gif'
 				});
 		}
 
